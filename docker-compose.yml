@@ -1,0 +1,43 @@
+# appの部分を、APP_NAMEに対応させるようにプロジェクトのディレクトリ名を決める。
+
+version: '3'
+services:
+  # postgresql
+  postgres_db:
+    image: postgres:14
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+  # Rails
+  rails:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # <app>の部分にプロジェクトルートディレクトリの名前を入れること
+    volumes:
+      - .:/<app>
+      - node_modules:/<app>/node_modules
+      - bundle:/usr/local/bundle
+      - config:/root/.ssh/
+    stdin_open: true
+    tty: true
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres_db
+      # - chrome
+
+  # seleniumを使ったテストをするために追加
+  # chrome:
+  #   image: selenium/standalone-chrome:latest
+  #   ports:
+  #     - 4444:4444
+  #   logging:
+  #     driver: none
+      
+volumes:
+  node_modules:
+  db-data:
+  bundle:
+  config:

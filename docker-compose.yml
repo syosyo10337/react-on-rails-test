@@ -16,8 +16,8 @@ services:
       dockerfile: Dockerfile
     # <app>の部分にプロジェクトルートディレクトリの名前を入れること
     volumes:
-      - .:/<app>
-      - node_modules:/<app>/node_modules
+      - .:/app
+      - node_modules:/app/node_modules
       - bundle:/usr/local/bundle
       - config:/root/.ssh/
     stdin_open: true

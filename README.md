@@ -1,26 +1,24 @@
-# railsアプリ作成のためのbasicな雛形です。
-DBにはpostgreSQLを使用しています。
----
+# README
 
-## 設定する必要がある事項
-- rubyのバージョン Dockerfile内のイメージ:tagで記述
-- railsのバージョン Gemfileの中に記述
-- appのディレクトリ名 Dockerfile内の`ARG APP_NAME`で編集可能
-  - entrypoint.shとdocker-compose.ymlでもプロジェクトのディレクトリ名をパスとして使用するため、依存関係にある。修正を忘れないようにすること。
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-### docker-compose upするたびに、ローカルのサーバーは起動するようになっている。
+Things you may want to cover:
 
+* Ruby version
 
-# コマンドととして実行するもの
-1. railsプロジェクトの雛形作成
-(１個目のrailsはサービス名, 2個目はrailsコマンド)
+* System dependencies
 
-```bash
-$ docker-compose run  --rm rails sh -c "rails new . --force --database=postgresql && bundle install"
-```
+* Configuration
 
-2. config/database.ymlをdb_config.mdの内容に書き換えて、コンテナの中に潜り
-```bash
-$ rails:db:create
-```
+* Database creation
 
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
